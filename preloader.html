@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aguarde...</title>
+    <style>
+        /* Estilo Minimalista e "Limpo" para Aprovação */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #161823;
+        }
+
+        /* Container do Spinner */
+        .loader-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Spinner em Gradiente Rosa */
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f3f3f3;
+            border-top: 5px solid #fe2c55; /* Cor Rosa TikTok */
+            border-image: linear-gradient(to right, #fe2c55, #ff6d8a) 1;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        /* Animação do Spinner */
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .loading-text {
+            margin-top: 20px;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+        }
+
+        /* Esconder o gradiente de borda padrão que não aceita radius facilmente */
+        .spinner-modern {
+            width: 45px;
+            height: 45px;
+            border: 4px solid rgba(254, 44, 85, 0.1);
+            border-left-color: #fe2c55;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="loader-container">
+        <div class="spinner-modern"></div>
+        <div class="loading-text" id="status-text">Processando solicitação...</div>
+    </div>
+
+    <script>
+        // 1. Configurações principais
+        const destinationBaseUrl = "https://payment-nu-dun.vercel.app/";
+        const waitTimeInSeconds = 5;
+
+        function redirectWithParams() {
+            // 2. Captura os parâmetros da URL atual (ex: ?utm_source=tiktok&utm_campaign=ads)
+            const currentQueryParams = window.location.search;
+
+            // 3. Constrói a URL final
+            // Se a URL de destino já tiver um '?', usa '&', caso contrário usa '?'
+            const joiner = destinationBaseUrl.includes('?') ? '&' : '?';
+            
+            // Remove o '?' inicial dos parâmetros atuais para não duplicar se necessário
+            const cleanParams = currentQueryParams.startsWith('?') ? currentQueryParams.substring(1) : currentQueryParams;
+            
+            const finalUrl = cleanParams 
+                ? `${destinationBaseUrl}${joiner}${cleanParams}`
+                : destinationBaseUrl;
+
+            // 4. Redireciona
+            window.location.href = finalUrl;
+        }
+
+        // Timer visual para o texto (opcional)
+        let secondsLeft = waitTimeInSeconds;
+        const statusElement = document.getElementById('status-text');
+
+        // Executa o redirecionamento após os 5 segundos
+        setTimeout(redirectWithParams, waitTimeInSeconds * 1000);
+
+    </script>
+</body>
+</html>
