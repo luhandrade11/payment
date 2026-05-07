@@ -183,12 +183,12 @@ const xe = () => {
                 className: "text-muted-foreground text-[12px] uppercase tracking-wide font-bold mb-3",
                 children: "Autenticação interbancária"
             }), e.jsxs("div", {
-                className: "flex items-center gap-3 mb-3",
+                className: "flex items-center justify-between gap-2 mb-3",
                 children: [e.jsx("span", {
-                    className: "text-[#10B981] text-[28px] font-extrabold",
+                    className: "text-[#10B981] text-[24px] font-extrabold whitespace-nowrap",
                     children: n(p)
                 }), e.jsx("span", {
-                    className: "text-[#10B981] text-[10px] font-bold border border-[#10B981] rounded-full px-2.5 py-0.5 animate-pulse",
+                    className: "text-[#10B981] text-[9.5px] font-bold border border-[#10B981] rounded-full px-2 py-0.5 animate-pulse whitespace-nowrap",
                     children: "Valor compensado automaticamente"
                 })]
             }), e.jsxs("p", {
