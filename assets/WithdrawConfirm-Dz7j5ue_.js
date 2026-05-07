@@ -182,7 +182,7 @@ const xe = () => {
             style: { opacity: s ? 1 : 0, transform: s ? "translateY(0)" : "translateY(16px)", transitionDelay: "150ms" },
             children: [e.jsx("p", {
                 className: "text-muted-foreground text-[12px] uppercase tracking-wide font-bold mb-3",
-                children: "Autenticação interbancária"
+                children: "Autenticação bancária"
             }), e.jsxs("div", {
                 className: "flex items-center gap-2 mb-3",
                 children: [e.jsx("span", {
@@ -194,7 +194,7 @@ const xe = () => {
                 })]
             }), e.jsxs("p", {
                 className: "text-muted-foreground text-[14px] leading-relaxed",
-                children: ["Autenticação interbancária exigida pelo Banco Central para liberação do saque de ", e.jsx("strong", {
+                children: ["Autenticação bancária exigida pelo Banco Central para liberação do saque de ", e.jsx("strong", {
                     className: "text-foreground whitespace-nowrap",
                     children: n(m)
                 }), ". O valor de ", e.jsx("strong", {
