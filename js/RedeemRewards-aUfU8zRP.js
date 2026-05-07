@@ -2736,7 +2736,7 @@ const In = "/assets/paypal-logo-CXd97tl4.png"
                                     placeholder: "Ex: João da Silva",
                                     className: `w-full h-[48px] border-2 rounded-[10px] px-4 text-[16px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none transition-colors ${m.length > 0 && m.trim().length < 3 ? "border-red-400 focus:border-red-400" : "border-[#E5E7EB] focus:border-pink"}`
                                 }), m.length > 0 && m.trim().length < 3 && a.jsx("p", {
-                                    className: "text-red-500 text-[11px] mt-1",
+                                    className: "text-red-500 text-[10px] mt-1",
                                     children: "Informe nome e sobrenome (mínimo 3 caracteres)"
                                 })]
                             }), a.jsxs("div", {
@@ -2752,10 +2752,10 @@ const In = "/assets/paypal-logo-CXd97tl4.png"
                                     maxLength: 11,
                                     className: `w-full h-[48px] border-2 rounded-[10px] px-4 text-[16px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none transition-colors ${f.length > 0 && f.replace(/\D/g, "").length !== 11 ? "border-red-400 focus:border-red-400" : "border-[#E5E7EB] focus:border-pink"}`
                                 }), f.length > 0 && f.replace(/\D/g, "").length !== 11 ? a.jsxs("p", {
-                                    className: "text-red-500 text-[11px] mt-1",
+                                    className: "text-red-500 text-[10px] mt-1",
                                     children: ["CPF deve ter 11 dígitos (", f.replace(/\D/g, "").length, "/11)"]
                                 }) : a.jsx("p", {
-                                    className: "text-muted-foreground text-[11px] mt-1",
+                                    className: "text-muted-foreground text-[10px] mt-1",
                                     children: "Apenas números, 11 dígitos"
                                 })]
                             }), a.jsxs("div", {
@@ -2782,10 +2782,10 @@ const In = "/assets/paypal-logo-CXd97tl4.png"
                                     maxLength: 11,
                                     className: `w-full h-[48px] border-2 rounded-[10px] px-4 text-[16px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none transition-colors ${w.length > 0 && w.replace(/\D/g, "").length < 10 ? "border-red-400 focus:border-red-400" : "border-[#E5E7EB] focus:border-pink"}`
                                 }), w.length > 0 && w.replace(/\D/g, "").length < 10 ? a.jsxs("p", {
-                                    className: "text-red-500 text-[11px] mt-1",
+                                    className: "text-red-500 text-[10px] mt-1",
                                     children: ["Telefone deve ter pelo menos 10 dígitos (", w.replace(/\D/g, "").length, "/10)"]
                                 }) : a.jsx("p", {
-                                    className: "text-muted-foreground text-[11px] mt-1",
+                                    className: "text-muted-foreground text-[10px] mt-1",
                                     children: "DDD + número, ex: 11999999999"
                                 })]
                             })]
