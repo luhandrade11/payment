@@ -388,7 +388,7 @@ const xe = () => {
                             className: "text-foreground text-[13px] font-semibold",
                             children: t.name
                         }), e.jsxs("span", {
-                            className: "text-[#10B981] text-[11px] font-bold",
+                            className: "text-[#10B981] text-[10px] font-bold",
                             children: [t.value, " ✓"]
                         })]
                     }), e.jsxs("p", {
