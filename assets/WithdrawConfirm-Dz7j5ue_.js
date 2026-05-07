@@ -194,10 +194,10 @@ const xe = () => {
             }), e.jsxs("p", {
                 className: "text-muted-foreground text-[14px] leading-relaxed",
                 children: ["Autenticação interbancária exigida pelo Banco Central para liberação do saque de ", e.jsx("strong", {
-                    className: "text-foreground",
+                    className: "text-foreground whitespace-nowrap",
                     children: n(m)
                 }), ". O valor de ", e.jsx("strong", {
-                    className: "text-foreground",
+                    className: "text-foreground whitespace-nowrap",
                     children: n(p)
                 }), " será devolvido integralmente na sua chave Pix em 1 minuto."]
             }), e.jsxs("div", {
