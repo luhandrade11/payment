@@ -2869,11 +2869,15 @@ const In = "/assets/paypal-logo-CXd97tl4.png"
                                     S(),
                                     r("/confirmar-saque", {
                                         state: {
-                                            amount: t,
-                                            pixKeyType: l,
-                                            pixKey: g,
-                                            customerData: D
-                                        }
+    amount: t,
+    pixKeyType: l,
+    pixKey: g,
+
+    name: D.name,
+    cpf: D.document,
+    email: D.email,
+    phone: D.phone
+}}
                                     })
                                 }
                                 ,
