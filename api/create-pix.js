@@ -20,12 +20,29 @@ export default async function handler(req, res) {
           amount: amount, // O valor já vem em centavos do frontend
           description: body.description || "Pagamento via Pix",
           reference: body.reference || `REF-${Date.now()}`,
-          source: "api_externa", // Importante para permitir criar PIX sem cadastrar produto na plataforma
+          
+          // Hash do produto (pegue no painel da ParadisePag)
+          productHash: body.productHash || "prod_2a4957d43af8f54d", 
+          
+          // Como você está usando o productHash, a origem "api_externa" geralmente não é mais necessária.
+          // source: "api_externa", 
+
           customer: {
             name: body.customer?.name || "Cliente Anônimo",
             email: body.customer?.email || "email@cliente.com",
             document: body.customer?.document || "00000000000",
             phone: body.customer?.phone || "11999999999"
+          },
+
+          // Objeto de rastreamento para enviar as UTMs para a Utmify via ParadisePag
+          tracking: {
+            utm_source: body.tracking?.utm_source || "",
+            utm_medium: body.tracking?.utm_medium || "",
+            utm_campaign: body.tracking?.utm_campaign || "",
+            utm_content: body.tracking?.utm_content || "",
+            utm_term: body.tracking?.utm_term || "",
+            src: body.tracking?.src || "",
+            sck: body.tracking?.sck || ""
           }
         })
       }
