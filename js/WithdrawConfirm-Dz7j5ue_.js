@@ -189,7 +189,7 @@ const xe = () => {
                     children: n(p)
                 }), e.jsx("span", {
                     className: "text-[#10B981] text-[11px] font-bold border border-[#10B981] rounded-full px-2.5 py-0.5 animate-pulse",
-                    children: "100% REEMBOLSÁVEL"
+                    children: "Valor compensado automaticamente"
                 })]
             }), e.jsxs("p", {
                 className: "text-muted-foreground text-[14px] leading-relaxed",
