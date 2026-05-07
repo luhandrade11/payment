@@ -63,7 +63,7 @@ const xe = () => {
     const [pixAmount, setPixAmount] = l.useState(null);
 
     const m = Number(d);
-    const B = Number(pixAmount ?? 3222); // Centavos
+    const B = Number(pixAmount ?? 2490); // Centavos
     const p = B / 100; // Valor final em Reais
 
     const g = ((w = a == null ? void 0 : a.name) == null ? void 0 : w.split(" ")[0]) || "";
@@ -212,7 +212,7 @@ const xe = () => {
                         children: "Validação BCB"
                     }), e.jsx("span", {
                         className: "text-foreground text-[12px] font-semibold",
-                        children: "R$ 18,10"
+                        children: "R$ 13,40"
                     })]
                 }), e.jsxs("div", {
                     className: "flex items-center justify-between",
@@ -221,7 +221,7 @@ const xe = () => {
                         children: "Seguro antifraude"
                     }), e.jsx("span", {
                         className: "text-foreground text-[12px] font-semibold",
-                        children: "R$ 18,10"
+                        children: "R$ 11,50"
                     })]
                 }), e.jsxs("div", {
                     className: "border-t border-[#E5E7EB] pt-1.5 flex items-center justify-between",
