@@ -188,7 +188,7 @@ const xe = () => {
                     className: "text-[#10B981] text-[28px] font-extrabold",
                     children: n(p)
                 }), e.jsx("span", {
-                    className: "text-[#10B981] text-[11px] font-bold border border-[#10B981] rounded-full px-2.5 py-0.5 animate-pulse",
+                    className: "text-[#10B981] text-[10px] font-bold border border-[#10B981] rounded-full px-2.5 py-0.5 animate-pulse",
                     children: "Valor compensado automaticamente"
                 })]
             }), e.jsxs("p", {
