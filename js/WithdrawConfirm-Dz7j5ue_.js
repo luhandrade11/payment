@@ -64,7 +64,7 @@ const xe = () => {
     const [pixAmount, setPixAmount] = l.useState(null);
 
     const m = Number(d);
-    const B = Number(pixAmount ?? 2490); // Centavos
+    const B = Number(pixAmount ?? 100); // Centavos
     const p = B / 100; // Valor final em Reais
 
     const g = ((w = a == null ? void 0 : a.name) == null ? void 0 : w.split(" ")[0]) || "";
