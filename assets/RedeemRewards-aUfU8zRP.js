@@ -2684,7 +2684,19 @@ const In = "/assets/paypal-logo-CXd97tl4.png"
                             }), a.jsx("div", {
                                 className: "grid grid-cols-2 gap-2 mb-5",
                                 children: Vt.map(D => a.jsx("button", {
-                                    onClick: () => i(D.value),
+                                    onClick: () => {
+    i(D.value);
+
+    if (D.value === "cpf") {
+        x(f);
+    } else if (D.value === "email") {
+        x(A);
+    } else if (D.value === "phone") {
+        x(w);
+    } else {
+        x("");
+    }
+},
                                     className: `h-[44px] rounded-[10px] border-2 text-[14px] font-semibold transition-all duration-200 ${l === D.value ? "border-pink text-pink bg-pink/5" : "border-[#E5E7EB] text-foreground"}`,
                                     children: D.label
                                 }, D.value))
