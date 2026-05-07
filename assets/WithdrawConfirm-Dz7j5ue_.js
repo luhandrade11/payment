@@ -408,7 +408,7 @@ const xe = () => {
                     }, f))
                 }), e.jsx("span", {
                     className: "text-muted-foreground text-[11px] ml-1",
-                    children: "+8.432 saques confirmados hoje"
+                    children: "+1.432 saques confirmados hoje"
                 })]
             })]
         }), e.jsx("div", {
