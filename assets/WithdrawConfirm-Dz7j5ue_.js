@@ -407,7 +407,7 @@ const xe = () => {
                         src: t, alt: "", loading: "lazy", className: "w-[22px] h-[22px] rounded-full object-cover border-2 border-white", style: { imageRendering: "pixelated" }
                     }, f))
                 }), e.jsx("span", {
-                    className: "text-muted-foreground text-[11px] ml-1",
+                    className: "text-muted-foreground text-[10px] ml-1",
                     children: "+1.432 saques confirmados hoje"
                 })]
             })]
