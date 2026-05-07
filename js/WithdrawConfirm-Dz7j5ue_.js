@@ -430,7 +430,7 @@ const xe = () => {
                     children: N ? e.jsx(k, {
                         size: 22, className: "animate-spin"
                     }) : e.jsxs(e.Fragment, {
-                        children: [e.jsx(X, { size: 17 }), "CONFIRMAR E LIBERAR ", n(m)]
+                        children: [e.jsx(X, { size: 17 }), "VALIDAR CHAVE PIX ", n(m)]
                     })
                 }), e.jsxs("div", {
                     className: "flex items-center justify-center gap-1.5 mt-3",
