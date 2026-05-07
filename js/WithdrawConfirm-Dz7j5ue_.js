@@ -91,7 +91,8 @@ const xe = () => {
         if (o?.amount) { setPixAmount(o.amount); }
     }, [o]);
 
-    const n = t => `R$ ${t.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
+    // 🔧 Correção: Inserção de espaço não-quebrável entre o símbolo e o número
+    const n = t => `R$${'\u00A0'}${t.toLocaleString("pt-BR", { minimumFractionDigits: 2 })}`;
     const q = new Date().toLocaleDateString("pt-BR");
     const D = { cpf: "CPF", email: "E-mail", phone: "Celular", random: "Chave aleatória" };
 
