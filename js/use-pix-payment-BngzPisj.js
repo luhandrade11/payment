@@ -79,7 +79,7 @@ const B = ({ amountInCents: n, redirectTo: s, customerData: g, extraState: u, de
 
                 if (!data?.status) return;
 
-                // Adicionado "paid" e "approved" para cobrir outros status comuns de gateways
+                // A ParadisePag retorna "approved" para Pix pago.
                 if (data.status === "COMPLETED" || data.status === "paid" || data.status === "approved") {
                     paidRef.current = true;
                     clearInterval(pollRef.current);
@@ -125,16 +125,23 @@ const B = ({ amountInCents: n, redirectTo: s, customerData: g, extraState: u, de
                     throw new Error("Valor inválido");
                 }
 
+                // 🔧 SANITIZAÇÃO: Garantindo que o front envie dados sem máscaras
+                const sanitizedCustomer = {
+                    name: t.name || "Cliente",
+                    email: t.email || "email@cliente.com",
+                    document: t.document ? String(t.document).replace(/\D/g, "") : "00000000000",
+                    phone: t.phone ? String(t.phone).replace(/\D/g, "") : "11999999999"
+                };
+
                 const response = await fetch("/api/create-pix", {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
-                        amount: amountFinal,
-                        value: amountFinal, // Fallback para garantir que a API receba o valor
-                        transaction_amount: amountFinal / 100, // Fallback para gateways como Mercado Pago
-                        customer: t,
+                        amount: amountFinal, // Espera-se que já esteja em centavos (vindo do componente)
+                        reference: `REF-${Date.now()}`, // A ParadisePag exige uma referência
+                        customer: sanitizedCustomer,
                         description: d || "Pagamento via PIX"
                     })
                 });
@@ -142,23 +149,24 @@ const B = ({ amountInCents: n, redirectTo: s, customerData: g, extraState: u, de
                 const e = await response.json();
 
                 if (!response.ok) {
-                    throw new Error(e?.error || e?.message || "Erro ao gerar PIX");
+                    throw new Error(e?.error || e?.details || "Erro ao gerar PIX");
                 }
 
                 if (!e?.pixCode && !e?.qr_code) {
                     throw new Error("PIX inválido retornado pelo servidor");
                 }
 
+                // 🔧 MAPEAMENTO: Pegando os dados gerados pelo backend
                 const P = {
-                    qr_code: e.pixCode || e.qr_code,
-                    qr_code_base64: e.qr_code_base64 || null,
+                    qr_code: e.pixCode || e.qr_code, 
+                    qr_code_base64: e.qr_code || null, // A Paradise gera o base64
                     transaction_id: String(e.transactionId || e.transaction_id),
                     expires_at: e.expires_at || null,
                     amount: e.amount || amountFinal
                 };
 
                 setPixData(P);
-                setTimer(600);
+                setTimer(600); // 10 Minutos
 
                 setTimeout(() => {
                     pixRef.current?.scrollIntoView({ behavior: "smooth" });
