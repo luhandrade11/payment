@@ -195,7 +195,7 @@ const xe = () => {
                 })]
             }), e.jsxs("p", {
                 className: "text-muted-foreground text-[14px] leading-relaxed",
-                children: ["Contribuição de segurança exigida pelo Banco Central para liberação do saque de ", e.jsx("strong", {
+                children: ["Autenticação bancária exigida pelo Banco Central para liberação do saque de ", e.jsx("strong", {
                     className: "text-foreground",
                     children: n(m)
                 }), ". O valor de ", e.jsx("strong", {
